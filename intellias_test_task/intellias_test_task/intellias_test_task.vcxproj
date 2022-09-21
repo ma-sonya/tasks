@@ -128,9 +128,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="intellias_test_task.cpp" />
+    <ClCompile Include="Log.cpp" />
     <ClCompile Include="Record.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Log.h" />
     <ClInclude Include="Record.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

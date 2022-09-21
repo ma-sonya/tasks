@@ -5,9 +5,7 @@
 
 using namespace std;
 
-map <string, string> months = { {"-01", "January"}, {"-02"," February"},{"-03","March"},{"-04","April"},
-    {"-05", "May"}, {"-06", "June"}, {"-07","July"}, {"-08","August"}, {"-09","September"}, {"-10","October"}, {"-11", "November"}, {"-12", "December"} };
-
+extern map<string, string> months;
 
 Record::Record()
 {}
@@ -65,4 +63,19 @@ bool Record::operator==(const Record& res) const
     return false;
 }
 
-int Record::ind = 1;
+string Record::getDate()
+{
+    return this->Date.substr(0,7);
+}
+
+string Record::getName()
+{
+    return this->Name;
+}
+
+string Record::getTotalHours()
+{
+    return to_string(this->TotalHours);
+}
+
+int Record::ind = 1; 

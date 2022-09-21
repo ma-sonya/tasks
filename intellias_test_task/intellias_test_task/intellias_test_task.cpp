@@ -6,8 +6,17 @@
 #include <algorithm>
 #include <iterator>
 #include "Record.h"
+#include "Log.h"
+#include <map>
 
 using namespace std;
+
+map <string, string> months = { {"-01", "January"}, {"-02"," February"},{"-03","March"},{"-04","April"},
+   {"-05", "May"}, {"-06", "June"}, {"-07","July"}, {"-08","August"}, {"-09","September"}, {"-10","October"}, {"-11", "November"}, {"-12", "December"} };
+map <string, string> months_back = { {"January","01"},{" February" , "02"},{"March" ,  "03"}, {"April","04"}, 
+    {"May" , "05"},{ "June", "06"}, {"July", "07"} ,{"August", "08"}, {"September", "09"}, {"October", "10"}, {"November", "11"}, {"December", "12"}};
+
+
 
 int main()
 {
@@ -27,6 +36,10 @@ int main()
         while (getline(InpFile, line))
         {
             stringstream inputString(line);
+            if (line.empty())
+            {
+                continue;
+            }
 
             //temporary
             string Name;
@@ -69,17 +82,29 @@ int main()
             for (int i =0; i < records.size(); i++)
             {
                 result << records[i].res();
+                //line = records[i].getDate();
             }
+            cout << "Output is saved in \"Res.csv\" :)\n";
         }
         catch (...)
         {
-            cout << "Error is here :/\n";           
+            cout << "ERROR: check input data\nFORMAT: Name;email;department;position;project;task;date;logged hours\n\n";
         }
 
         result.close();
-        cout << "Output is saved in \"Res.csv\" :)";
+
     }
     InpFile.close();
+
+    //testing class Log
+    Log tto(2021, 10, records);
+    tto.outputByMonth(10);
+    tto.addWorker(Record("Koll", "rer@goggle.com", "MAIN", "Delivery", "007", "Main", "2021-01-18", 14));
+    tto.outputByMonth("January");
+    tto.addWorkerVector(records);
+    tto.saveInFile();
+    tto.saveInFile("test.txt");
+    
 
     return 0;
 }

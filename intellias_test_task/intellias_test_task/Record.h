@@ -14,6 +14,9 @@ public:
     string res();
     void addHours(int Hours);
     bool operator==(const Record& res) const;
+    string getDate();
+    string getName();
+    string getTotalHours();
 
 private:
     string Name;
